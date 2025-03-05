@@ -25,16 +25,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loginBtn.setOnClickListener{
-
+            if(binding.usernameEt.text.toString() == "Admin" && binding.passwordEt.text.toString() == "Admin"){
+                eventCreationScreen();
+            }
         }
 
         //This is a comment from jerry
         //this is from ayush on line 27
-
-        fun eventCreationScreen(){
-            val i = Intent(applicationContext, MainActivity2:: class.java)
-            startActivity(i)
-        }
-
+    }
+    private fun eventCreationScreen(){
+        val i = Intent(applicationContext, EventCreationActivity:: class.java)
+        startActivity(i)
     }
 }
