@@ -1,5 +1,6 @@
 package com.example.meetmewherejerry
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +24,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.
+
         //This is a comment from jerry
         //this is from ayush on line 27
+
+        fun eventCreationScreen(){
+            val i = Intent(applicationContext, MainActivity2:: class.java)
+            startActivity(i)
+        }
 
     }
 }
