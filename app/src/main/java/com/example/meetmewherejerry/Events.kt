@@ -2,15 +2,15 @@ package com.example.meetmewherejerry
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
-@Entity(tableName="events")
-
-data class EventsEntity (
+@Entity
+data class Events (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val title: String,
     val description: String,
-    val date : String,
+    val date : Date,
     val time: String,
     val location : String
 )
