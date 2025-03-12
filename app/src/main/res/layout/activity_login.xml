@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/loginTv"
+        android:layout_width="128dp"
+        android:layout_height="68dp"
+        android:text="LOGIN"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textSize="40sp" />
+
+    <EditText
+        android:id="@+id/usernameEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/passwordEt"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/haveAccountTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:text="No account?"
+        android:textSize="20dp"/>
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Register"/>
+</LinearLayout>

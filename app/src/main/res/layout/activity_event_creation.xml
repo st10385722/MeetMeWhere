@@ -8,4 +8,71 @@
     android:layout_height="match_parent"
     tools:context=".EventCreationActivity"
     android:orientation="vertical">
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/backBtn"
+        android:text="Back"/>
+    <TextView
+        android:id="@+id/createEventTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:text="Create an event"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventTitleEt"
+        android:layout_gravity="center"
+        android:maxLength="20"
+        android:hint="Title"/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="150dp"
+        android:id="@+id/eventDescriptionEt"
+        android:layout_gravity="center"
+        android:maxLength="100"
+        android:hint="Description"/>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:inputType="date"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventDateEt"
+        android:layout_gravity="center"
+        android:hint="Date"/>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventTimeEt"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:hint="Time"/>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventLocationEt"
+        android:layout_gravity="center"
+        android:inputType="text"
+        android:maxLength="50"
+        android:hint="Location"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createEventBtn"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Create"
+        android:textSize="20sp"/>
 </LinearLayout>
