@@ -17,7 +17,7 @@ class EventListAdapter(private var context: Context, private var eventList: List
     }
 
     override fun onBindViewHolder(holder: EventListAdapter.MyViewHolder,position: Int) {
-        var myModel =
+
     }
 
     override fun getItemCount(): Int {
