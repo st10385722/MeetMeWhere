@@ -12,7 +12,7 @@ interface EventsDAO {
     @Insert
     fun insertEvent(events: Events)
     @Query("SELECT * FROM events")
-    fun getAllEvents(): LiveData<List<Events>>
+    fun getAllEvents(): List<Events>
     @Query("DELETE FROM events where id = :id")
     fun deleteEvent(id: Int)
 }

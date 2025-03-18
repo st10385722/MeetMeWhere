@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.meetmewherejerry.databinding.ActivityLoginBinding
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
@@ -29,9 +31,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "One or more fields are not filled in", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            val loginUser = uvm.isValidUser(binding.usernameEt.text.toString(), binding.passwordEt.text.toString())
-            if(loginUser != null){
-                eventHubScreen()
+            lifecycleScope.launch {
+                val loginUser = uvm.isValidUser(
+                    binding.usernameEt.text.toString(),
+                    binding.passwordEt.text.toString()
+                )
+                if (loginUser != null) {
+                    eventHubScreen()
+                }
             }
         }
 

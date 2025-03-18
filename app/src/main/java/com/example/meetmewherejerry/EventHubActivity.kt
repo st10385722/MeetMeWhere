@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetmewherejerry.databinding.ActivityEventHubBinding
 
 class EventHubActivity : AppCompatActivity() {
@@ -25,13 +27,17 @@ class EventHubActivity : AppCompatActivity() {
         binding = ActivityEventHubBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val username = intent.getStringExtra("Username")
-        val saveUsername = username
 
         val eventAdded = intent.getStringExtra("newEventAdded")
-        binding.welcomeTv.text = "Welcome, $saveUsername make an event"
+        if (username != null) {
+            binding.welcomeTv.text = "Welcome, $username make an event"
+        } else {
+            binding.welcomeTv.text = "Welcome user, make an event"
+        }
         val eventList = evm.eventsList
+        getData()
 
-        if(eventList.value?.isEmpty() == true){
+        if(eventList.isEmpty()){
             binding.listEventTv.text = "There are no events added. Consider creating one!"
         }
 
@@ -46,5 +52,12 @@ class EventHubActivity : AppCompatActivity() {
     private fun eventCreationScreen(){
         val i = Intent(applicationContext, EventCreationActivity::class.java)
         startActivity(i)
+    }
+
+    private fun getData(){
+        var eventList =  evm.eventsList
+        var adapter = EventListAdapter(this, eventList)
+        binding.eventRv.adapter=adapter
+        binding.eventRv.layoutManager = LinearLayoutManager(this)
     }
 }

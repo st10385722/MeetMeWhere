@@ -9,7 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.meetmewherejerry.databinding.ActivityEventCreationBinding
+import kotlinx.coroutines.launch
 import java.util.Date
 import java.util.Locale
 
@@ -41,8 +43,15 @@ class EventCreationActivity : AppCompatActivity() {
             }
             val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
             val eventDate: Date = dateFormat.parse(binding.eventDateEt.text.toString())
-            evm.insertEvent(binding.eventTitleEt.text.toString(), binding.eventDescriptionEt.text.toString(),
-                eventDate, binding.eventTimeEt.text.toString(), binding.eventLocationEt.text.toString())
+            lifecycleScope.launch {
+                evm.insertEvent(
+                    binding.eventTitleEt.text.toString(),
+                    binding.eventDescriptionEt.text.toString(),
+                    eventDate,
+                    binding.eventTimeEt.text.toString(),
+                    binding.eventLocationEt.text.toString()
+                )
+            }
             EventHubAfterNewEventScreen()
         }
 

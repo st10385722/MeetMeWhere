@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
-class EventListAdapter(private var context: Context, private var eventList: List<Users>) :
+class EventListAdapter(private var context: Context, private var eventList: List<Events>) :
     RecyclerView.Adapter<EventListAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): EventListAdapter.MyViewHolder {
@@ -17,16 +18,18 @@ class EventListAdapter(private var context: Context, private var eventList: List
     }
 
     override fun onBindViewHolder(holder: EventListAdapter.MyViewHolder,position: Int) {
-
+        var myModel = eventList.get(position)
+        holder.eventTitleTv.text = myModel?.title
+        holder.eventDateTv.text = myModel?.date.toString()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return eventList.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private var eventTitleTv:TextView
-        private var eventDateTv:TextView
+        var eventTitleTv:TextView
+        var eventDateTv:TextView
 
         init{
             eventTitleTv = itemView.findViewById(R.id.eventTitleTv)

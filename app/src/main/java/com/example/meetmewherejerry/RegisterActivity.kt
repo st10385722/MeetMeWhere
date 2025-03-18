@@ -11,7 +11,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.meetmewherejerry.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.w3c.dom.Text
 
 
@@ -45,7 +49,14 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "This username is already in use!", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            uvm.insertUser(binding.usernameEt.text.toString(), binding.passwordEt.text.toString())
+            lifecycleScope.launch {
+                withContext(Dispatchers.IO){
+                    uvm.insertUser(
+                        binding.usernameEt.text.toString(),
+                        binding.passwordEt.text.toString()
+                    )
+                }
+            }
             loginScreen()
         }
 
