@@ -9,20 +9,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.meetmewherejerry.ActivityAccess.AuthActivityAccess
 import com.example.meetmewherejerry.databinding.ActivityEventHubBinding
 
-class EventHubActivity : AppCompatActivity() {
+class EventHubActivity : AuthActivityAccess() {
     private lateinit var binding : ActivityEventHubBinding
     private var evm : EventsViewModel = EventsViewModel()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_event_hub)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+    override fun onAuthenticatedCreate(savedInstanceState: Bundle?) {
+        super.onAuthenticatedCreate(savedInstanceState)
+        setContentView(R.layout.activity_auth_access)
 
         binding = ActivityEventHubBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,8 +52,15 @@ class EventHubActivity : AppCompatActivity() {
 
     private fun getData(){
         var eventList =  evm.eventsList
-        var adapter = EventListAdapter(this, eventList)
+        var adapter = EventListAdapter(
+            this,
+            eventList,
+            onDeleteClick = { event ->
+                evm.deleteEvent(event.id)
+            }
+        )
         binding.eventRv.adapter=adapter
         binding.eventRv.layoutManager = LinearLayoutManager(this)
+
     }
 }

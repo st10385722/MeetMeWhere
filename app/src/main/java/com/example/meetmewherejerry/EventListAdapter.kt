@@ -4,14 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
-class EventListAdapter(private var context: Context, private var eventList: List<Events>) :
-    RecyclerView.Adapter<EventListAdapter.MyViewHolder>() {
-
+class EventListAdapter(private var context: Context,
+                       private var eventList: List<Events>,
+                       //add one for update when you implement it
+                       private val onDeleteClick: (Events) -> Unit
+) :RecyclerView.Adapter<EventListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): EventListAdapter.MyViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.event_rom, parent,false)
         return MyViewHolder(view)
@@ -21,6 +25,19 @@ class EventListAdapter(private var context: Context, private var eventList: List
         var myModel = eventList.get(position)
         holder.eventTitleTv.text = myModel?.title
         holder.eventDateTv.text = myModel?.date.toString()
+        holder.updateEventBtn.setOnClickListener {
+            Toast.makeText(context, "Not implemented yet!", Toast.LENGTH_SHORT).show()
+        }
+        //add for update when you implement it
+        holder.deleteEventBtn.setOnClickListener {
+            onDeleteClick(myModel)
+            //updates the list
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, eventList.size)
+        }
+
+        //alternate way to get all items to bind to holder
+        //val item = items[position]
     }
 
     override fun getItemCount(): Int {
@@ -30,10 +47,14 @@ class EventListAdapter(private var context: Context, private var eventList: List
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var eventTitleTv:TextView
         var eventDateTv:TextView
+        var updateEventBtn:Button
+        var deleteEventBtn:Button
 
         init{
             eventTitleTv = itemView.findViewById(R.id.eventTitleTv)
             eventDateTv = itemView.findViewById(R.id.eventDateTv)
+            updateEventBtn = itemView.findViewById(R.id.UpdateEventBtn)
+            deleteEventBtn = itemView.findViewById(R.id.DeleteEventBtn)
         }
     }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "293374922073",
+    "project_id": "meetmewherejerry",
+    "storage_bucket": "meetmewherejerry.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293374922073:android:c66955fa5b6fb29d8bd048",
+        "android_client_info": {
+          "package_name": "com.example.meetmewherejerry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAAOlGpkWOMuXpCIOcuJnH3GXWtLUNBvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

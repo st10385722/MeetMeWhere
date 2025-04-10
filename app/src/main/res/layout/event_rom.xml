@@ -19,6 +19,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eventDateTv"/>
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@android:color/holo_green_dark"
+                android:text="Update"
+                android:id="@+id/UpdateEventBtn" />
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@android:color/holo_red_dark"
+                android:text="Delete"
+                android:id="@+id/DeleteEventBtn"/>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

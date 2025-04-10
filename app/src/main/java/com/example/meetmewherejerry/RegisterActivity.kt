@@ -13,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.meetmewherejerry.databinding.ActivityRegisterBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -21,7 +24,8 @@ import org.w3c.dom.Text
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
-    private var uvm : UsersViewModel = UsersViewModel()
+    //private var uvm : UsersViewModel = UsersViewModel()
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,35 +38,37 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
 
         binding.registerBtn.setOnClickListener {
-            if(binding.usernameEt.text.toString() == "" || binding.passwordEt.text.toString() == "" || binding.confirmPasswordEt.text.toString() == ""){
-                Toast.makeText(this, "One or more fields are not filled in", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            if(binding.passwordEt.text.toString() != binding.confirmPasswordEt.text.toString()){
-                Toast.makeText(this, "The passwords do not match!", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            val isNewValid = uvm.getSingleUser(binding.usernameEt.text.toString())
-            if(isNewValid != null){
-                Toast.makeText(this, "This username is already in use!", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            lifecycleScope.launch {
-                withContext(Dispatchers.IO){
-                    uvm.insertUser(
-                        binding.usernameEt.text.toString(),
-                        binding.passwordEt.text.toString()
-                    )
-                }
-            }
-            loginScreen()
+            registerUser()
         }
 
         binding.loginBtn.setOnClickListener {
             loginScreen()
         }
+    }
+
+    private fun registerUser(){
+        if(binding.emailEt.text.toString() == "" || binding.passwordEt.text.toString() == "" || binding.confirmPasswordEt.text.toString() == ""){
+            Toast.makeText(this, "One or more fields are not filled in", Toast.LENGTH_LONG).show()
+            return
+        }
+        if(binding.passwordEt.text.toString() != binding.confirmPasswordEt.text.toString()){
+            Toast.makeText(this, "The passwords do not match!", Toast.LENGTH_LONG).show()
+            return
+        }
+        auth.createUserWithEmailAndPassword(binding.emailEt.text.toString(), binding.passwordEt.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if(task.isSuccessful){
+                    Toast.makeText(this, "Account successfully created!", Toast.LENGTH_LONG).show()
+                    loginScreen()
+                } else {
+                    Toast.makeText(this, "Account creation failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        //if all fails
+        return
     }
 
     private fun loginScreen(){

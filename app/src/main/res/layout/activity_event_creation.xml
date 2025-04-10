@@ -26,23 +26,27 @@
         android:layout_gravity="center"/>
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_margin="30dp"
         android:layout_height="wrap_content"
         android:id="@+id/eventTitleEt"
         android:layout_gravity="center"
         android:maxLength="20"
         android:hint="Title"/>
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_height="150dp"
         android:id="@+id/eventDescriptionEt"
         android:layout_gravity="center"
         android:maxLength="100"
         android:hint="Description"/>
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
         android:inputType="date"
         android:layout_height="wrap_content"
@@ -50,7 +54,9 @@
         android:layout_gravity="center"
         android:hint="Date"/>
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/eventTimeEt"
@@ -58,7 +64,9 @@
         android:layout_gravity="center"
         android:hint="Time"/>
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/eventLocationEt"
@@ -68,11 +76,11 @@
         android:hint="Location"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/createEventBtn"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="Create"
         android:textSize="20sp"/>
 </LinearLayout>
