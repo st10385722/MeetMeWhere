@@ -10,9 +10,9 @@ import java.util.Date
 data class Events (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val title: String,
-    val description: String,
-    val date : Date,
-    val time: String,
-    val location : String
+    var title: String,
+    var description: String,
+    var date : Date,
+    var time: String,
+    var location : String
 )

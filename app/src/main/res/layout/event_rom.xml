@@ -39,6 +39,13 @@
                 android:foreground="@android:color/holo_red_dark"
                 android:text="Delete"
                 android:id="@+id/DeleteEventBtn"/>
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@android:color/holo_blue_bright"
+                android:text="Expand Info"
+                android:id="@+id/expandInfoBtn"/>
         </LinearLayout>
     </LinearLayout>
 

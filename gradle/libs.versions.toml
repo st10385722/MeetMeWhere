@@ -1,7 +1,7 @@
 [versions]
 agp = "8.8.1"
 artifactid = "version"
-firebaseBom = "33.11.0"
+firebaseBom = "33.12.0"
 kotlin = "1.9.24"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -19,14 +19,12 @@ roomKts = "2.6.1"
 roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
 kotlinxMetadataJvm = "0.9.0"
-googleGmsGoogleServices = "4.4.2"
-firebaseAuth = "23.2.0"
+firebaseAuthKtx = "23.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCommon" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomCommon" }
 artifactid = { module = "groupId:artifactId", version.ref = "artifactid" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -44,10 +42,9 @@ room-compiler-v261 = { module = "android.room:room.compiler", version.ref = "roo
 room-kts = { module = "andoidx.room:room.kts", version.ref = "roomKts" }
 room-runtime = { module = "android.room:room-runtime", version.ref = "roomRuntime" }
 kotlinx-metadata-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-metadata-jvm", version.ref = "kotlinxMetadataJvm" }
-firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

@@ -13,8 +13,9 @@ import org.w3c.dom.Text
 
 class EventListAdapter(private var context: Context,
                        private var eventList: List<Events>,
-                       //add one for update when you implement it
-                       private val onDeleteClick: (Events) -> Unit
+                       private val onDeleteClick: (Events) -> Unit,
+                       private val onUpdateClick: (Events) -> Unit,
+                       private val onViewClick: (Events) -> Unit
 ) :RecyclerView.Adapter<EventListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): EventListAdapter.MyViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.event_rom, parent,false)
@@ -25,16 +26,21 @@ class EventListAdapter(private var context: Context,
         var myModel = eventList.get(position)
         holder.eventTitleTv.text = myModel?.title
         holder.eventDateTv.text = myModel?.date.toString()
-        holder.updateEventBtn.setOnClickListener {
-            Toast.makeText(context, "Not implemented yet!", Toast.LENGTH_SHORT).show()
-        }
+//        holder.updateEventBtn.setOnClickListener {
+//            Toast.makeText(context, "Not implemented yet!", Toast.LENGTH_SHORT).show()
+//        }
         //add for update when you implement it
         holder.deleteEventBtn.setOnClickListener {
             onDeleteClick(myModel)
-            //updates the list
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, eventList.size)
         }
+        holder.updateEventBtn.setOnClickListener {
+            onUpdateClick(myModel)
+        }
+        holder.expandInfoBtn.setOnClickListener {
+            onViewClick(myModel)
+        }
+
+
 
         //alternate way to get all items to bind to holder
         //val item = items[position]
@@ -49,12 +55,14 @@ class EventListAdapter(private var context: Context,
         var eventDateTv:TextView
         var updateEventBtn:Button
         var deleteEventBtn:Button
+        var expandInfoBtn:Button
 
         init{
             eventTitleTv = itemView.findViewById(R.id.eventTitleTv)
             eventDateTv = itemView.findViewById(R.id.eventDateTv)
             updateEventBtn = itemView.findViewById(R.id.UpdateEventBtn)
             deleteEventBtn = itemView.findViewById(R.id.DeleteEventBtn)
+            expandInfoBtn = itemView.findViewById(R.id.expandInfoBtn)
         }
     }
 }

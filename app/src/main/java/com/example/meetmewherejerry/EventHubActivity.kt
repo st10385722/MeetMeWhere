@@ -33,7 +33,7 @@ class EventHubActivity : AuthActivityAccess() {
         val eventList = evm.eventsList
         getData()
 
-        if(eventList.isEmpty()){
+        if(evm.eventDao.getAnyEvent() == null){
             binding.listEventTv.text = "There are no events added. Consider creating one!"
         }
 
@@ -51,16 +51,26 @@ class EventHubActivity : AuthActivityAccess() {
     }
 
     private fun getData(){
-        var eventList =  evm.eventsList
-        var adapter = EventListAdapter(
-            this,
-            eventList,
-            onDeleteClick = { event ->
-                evm.deleteEvent(event.id)
-            }
-        )
-        binding.eventRv.adapter=adapter
-        binding.eventRv.layoutManager = LinearLayoutManager(this)
-
+        evm.eventsList.observe(this) { events ->
+            val adapter = EventListAdapter(
+                this,
+                events,
+                onDeleteClick = { event ->
+                    evm.deleteEvent(event.id)
+                },
+                onUpdateClick = { event ->
+                    val i = Intent(applicationContext, EditEventActivity::class.java)
+                    i.putExtra("EventID", event.id)
+                    startActivity(i)
+                },
+                onViewClick = { event ->
+                    val i = Intent(applicationContext, ViewEventDetailsActivity::class.java)
+                    i.putExtra("EventID", event.id)
+                    startActivity(i)
+                }
+            )
+            binding.eventRv.adapter = adapter
+            binding.eventRv.layoutManager = LinearLayoutManager(this)
+        }
     }
 }
